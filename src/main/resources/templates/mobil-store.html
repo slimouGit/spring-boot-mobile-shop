@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Mobil shop</title>
+</head>
+<body>
+    <h1>Mobil store</h1>
+    <a class="btn btn-success" href="/home">home</a>
+    <a class="btn btn-success" href="/store">store</a>
+    <div>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Preis</th>
+                <th>Bild</th>
+                <th></th>
+            </tr>
+            <tr th:each = "m, hh : ${mobil}">
+                <td th:text="${m.getId()}"></td>
+                <td th:text="${m.getName()}"></td>
+                <td th:text="${m.getDesrcription()}"></td>
+                <td th:text="${m.getPrice()}"></td>
+                <td><img th:src="@{${'/image/display/'+ m.id}}"
+                         class="card img-fluid" style="width:300px" alt=""/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
