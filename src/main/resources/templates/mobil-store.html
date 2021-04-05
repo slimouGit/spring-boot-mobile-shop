@@ -9,6 +9,7 @@
 <body>
     <h1>Mobil store</h1>
     <a class="btn btn-success" href="/home">home</a>
+    <a class="btn btn-success" href="/new">add</a>
     <a class="btn btn-success" href="/store">store</a>
     <div>
         <table class="table table-striped">
@@ -23,7 +24,7 @@
             <tr th:each = "m, hh : ${mobil}">
                 <td th:text="${m.getId()}"></td>
                 <td th:text="${m.getName()}"></td>
-                <td th:text="${m.getDesrcription()}"></td>
+                <td th:text="${m.getDescription()}"></td>
                 <td th:text="${m.getPrice()}"></td>
                 <td><img th:src="@{${'/image/display/'+ m.id}}"
                          class="card img-fluid" style="width:300px" alt=""/>

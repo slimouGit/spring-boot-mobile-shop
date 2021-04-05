@@ -2,9 +2,8 @@ package de.slimou.mobilshop;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -50,6 +49,33 @@ public class ShopController {
         return "mobil-store";
     }
 
+    /**
+     * Eingabe-Maske
+     */
+    @GetMapping(path = "/new")
+    public String addImage(Model model) {
+        Mobil mobil = new Mobil();
+        model.addAttribute("mobil", mobil);
+        return "add-mobil";
+    }
+
+    /**
+     * Formular-Eingaben entgegen nehmen und in Mobil speichern
+     */
+    @PostMapping(path = "/new")
+    public String saveImage(@RequestParam("image") MultipartFile file, @RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("price") Double price) {
+        Mobil mobil = new Mobil();
+        mobil.setName(name);
+        mobil.setDescription(description);
+        mobil.setPrice(price);
+        try {
+            mobil.setImage(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mobilRepository.save(mobil);
+        return "redirect:/store";
+    }
 
 
 }
