@@ -77,5 +77,31 @@ public class ShopController {
         return "redirect:/store";
     }
 
+    @GetMapping(path = "/view/{id}")
+    public String viewContact(Model model, @PathVariable Long id) {
+        Optional<Mobil> mobil = mobilRepository.findById(id);
+        if (mobil.isPresent()) {
+            model.addAttribute("mobil", mobil.get());
+            model.addAttribute("name", mobil.get().getName());
+            model.addAttribute("description", mobil.get().getDescription());
+            model.addAttribute("price", mobil.get().getPrice());
+            model.addAttribute("image", mobil.get().getImage());
+
+        } else {
+            return "/store";
+        }
+        return "mobil-detail";
+    }
+
+    @RequestMapping("/contact-detail")
+    public String detailansicht(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("id", mobilRepository.findById(id).get().getId());
+        model.addAttribute("name", mobilRepository.findById(id).get().getName());
+        model.addAttribute("description", mobilRepository.findById(id).get().getDescription());
+        model.addAttribute("price", mobilRepository.findById(id).get().getPrice());
+        model.addAttribute("image", mobilRepository.findById(id).get().getName());
+       return "mobil-detail";
+    }
+
 
 }

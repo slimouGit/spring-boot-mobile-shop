@@ -20,6 +20,7 @@
                 <th>Preis</th>
                 <th>Bild</th>
                 <th></th>
+                <th></th>
             </tr>
             <tr th:each = "m, hh : ${mobil}">
                 <td th:text="${m.getId()}"></td>
@@ -28,6 +29,9 @@
                 <td th:text="${m.getPrice()}"></td>
                 <td><img th:src="@{${'/image/display/'+ m.id}}"
                          class="card img-fluid" style="width:300px" alt=""/>
+                </td>
+                <td>
+                    <a class="btn btn-default" th:href="@{'/view/'+ ${m.id}}">view</a>
                 </td>
             </tr>
         </table>
