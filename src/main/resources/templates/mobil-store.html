@@ -4,37 +4,43 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
     <title>Mobil shop</title>
 </head>
 <body>
-    <h1>Mobil store</h1>
-    <a class="btn btn-success" href="/home">home</a>
-    <a class="btn btn-success" href="/new">add</a>
-    <a class="btn btn-success" href="/store">store</a>
-    <div>
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Beschreibung</th>
-                <th>Preis</th>
-                <th>Bild</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr th:each = "m, hh : ${mobil}">
-                <td th:text="${m.getId()}"></td>
-                <td th:text="${m.getName()}"></td>
-                <td th:text="${m.getDescription()}"></td>
-                <td th:text="${m.getPrice()}"></td>
-                <td><img th:src="@{${'/image/display/'+ m.id}}"
-                         class="card img-fluid" style="width:300px" alt=""/>
-                </td>
-                <td>
-                    <a class="btn btn-default" th:href="@{'/view/'+ ${m.id}}">view</a>
-                </td>
-            </tr>
-        </table>
-    </div>
+<h1>Mobil store</h1>
+<a class="btn btn-success" href="/home">home</a>
+<a class="btn btn-success" href="/new">add</a>
+<a class="btn btn-success" href="/store">store</a>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Preis</th>
+            <th>Bild</th>
+        </tr>
+        <tr th:each="m, hh : ${mobil}">
+            <td th:text="${m.getName()}"></td>
+            <td th:text="${m.getPrice()}"></td>
+            <td>
+        <div>
+
+            <a class="btn btn-default" th:href="@{'/view/'+ ${m.id}}">
+                <img th:src="@{${'/image/display/'+ m.id}}"
+                     class="card img-fluid" style="width:300px" alt=""/>
+            </a>
+        </div>
+        <div>
+            <a class="btn btn-default" th:href="@{'/view/'+ ${m.id}}">Detail-Ansicht</a>
+        </div>
+        </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
